@@ -16,3 +16,7 @@ venv.bak/
 .png
 .jpeg
 .pdf
+
+# Poetry/Cache
+poetry.lock
+__pycache__/
