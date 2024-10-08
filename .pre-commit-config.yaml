@@ -40,3 +40,28 @@ repos:
 
       - id: sqlfluff-fix
         args: ['--config', '.sqlfluff']  # Auto-fix SQL issues based on SQLFluff rules
+
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.8.0  # use the latest stable version
+    hooks:
+      - id: nbqa-flake8
+        name: flake8 on notebooks
+        additional_dependencies: [flake8]
+        args:
+          - "--ignore=E203,W503"  # adjust based on your flake8 config
+
+      - id: nbqa-black
+        name: black on notebooks
+        additional_dependencies: [black]
+        args:
+          - "--line-length=88"  # adjust line length if needed
+
+      - id: nbqa-isort
+        name: isort on notebooks
+        additional_dependencies: [isort]
+        args:
+          - "--profile=black"  # optional, to match black formatting
+
+      - id: nbqa-mypy
+        name: mypy on notebooks
+        additional_dependencies: [mypy]      
