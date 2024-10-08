@@ -42,26 +42,57 @@ repos:
         args: ['--config', '.sqlfluff']  # Auto-fix SQL issues based on SQLFluff rules
 
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.8.0  # use the latest stable version
+    rev: 1.8.0
     hooks:
       - id: nbqa-flake8
         name: flake8 on notebooks
         additional_dependencies: [flake8]
         args:
-          - "--ignore=E203,W503"  # adjust based on your flake8 config
+          - "."
+          - "--ignore=E203,W503"
+        files: \.ipynb$
+        always_run: true
 
       - id: nbqa-black
         name: black on notebooks
         additional_dependencies: [black]
         args:
-          - "--line-length=88"  # adjust line length if needed
+          - "."
+          - "--line-length=88"
+        files: \.ipynb$
+        always_run: true
 
       - id: nbqa-isort
         name: isort on notebooks
         additional_dependencies: [isort]
         args:
-          - "--profile=black"  # optional, to match black formatting
+          - "."
+          - "--profile=black"
+        files: \.ipynb$
+        always_run: true
 
-      - id: nbqa-mypy
-        name: mypy on notebooks
-        additional_dependencies: [mypy]      
+      # - id: nbqa-mypy
+      #   name: mypy on notebooks
+      #   additional_dependencies: [mypy]
+      #   args:
+      #     - "."
+      #   files: \.ipynb$
+      #   always_run: true
+
+      # - id: nbqa-pylint
+      #   name: pylint on notebooks
+      #   additional_dependencies: [pylint]
+      #   args:
+      #     - "."
+      #     - "--disable=C0114,C0116"
+      #   files: \.ipynb$
+      #   always_run: true
+
+      # - id: nbqa-pyupgrade
+      #   name: pyupgrade on notebooks
+      #   additional_dependencies: [pyupgrade]
+      #   args:
+      #     - "."
+      #     - "--py36-plus"
+      #   files: \.ipynb$
+      #   always_run: true
